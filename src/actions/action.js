@@ -12,27 +12,20 @@ export const fetchData = () => async (dispatch) => {
 
     const data = await response.json();
 
-    dispatch({ type: "dataSuccess", payload: data });
+    dispatch({ type: "ticketSuccess", payload: data });
   } catch (error) {
-    dispatch({ type: "dataFailure" });
+    dispatch({ type: "ticketFailure" });
   }
 };
 
 export const dataSelect = (group, tickets, order) => async (dispatch) => {
   try {
-    console.log(group, tickets, order);
-    dispatch({ type: "dataSelectRequest" });
+    dispatch({ type: "ticketSelectRequest" });
 
     let user = false;
     let set = new Set();
     let array = [];
-    let dataSelected = [];
-
-    if (order === "title") {
-      dataSelected.forEach((element, index) => {
-        element[index]?.value?.sort((a, b) => a.title.localeCompare(b.title));
-      });
-    }
+    let ticketSelected = [];
 
     if (group === "status") {
       tickets.forEach((element) => {
@@ -45,7 +38,7 @@ export const dataSelect = (group, tickets, order) => async (dispatch) => {
         let array = tickets.filter((filterElement) => {
           return element === filterElement.status;
         });
-        dataSelected.push({
+        ticketSelected.push({
           [index]: {
             title: element,
             value: array,
@@ -59,14 +52,13 @@ export const dataSelect = (group, tickets, order) => async (dispatch) => {
           return element.id === filterElement.userId;
         });
 
-        dataSelected.push({
+        ticketSelected.push({
           [index]: {
             title: element.name,
             value: array,
           },
         });
       });
-      console.log(dataSelected);
     } else {
       let priorityList = ["No priority", "Low", "Medium", "High", "Urgent"];
 
@@ -75,24 +67,35 @@ export const dataSelect = (group, tickets, order) => async (dispatch) => {
           return index === filterElement.priority;
         });
 
-        dataSelected.push({
+        ticketSelected.push({
           [index]: {
             title: element,
             value: array,
           },
         });
       });
+
+      if (order === "title") {
+        ticketSelected.forEach((element, index) => {
+          const valueArray = element[index]?.value;
+          if (Array.isArray(valueArray)) {
+            valueArray.sort((a, b) => a.title.localeCompare(b.title));
+          }
+        });
+      }
     }
 
     if (order === "priority") {
-      dataSelected.forEach((element, index) => {
-        element[index]?.value?.sort((a, b) => b.priority - a.priority);
+      ticketSelected.forEach((element, index) => {
+        const valueArray = element[index]?.value;
+        if (Array.isArray(valueArray)) {
+          valueArray.sort((a, b) => b.priority - a.priority);
+        }
       });
     }
 
-    console.log(dataSelected);
-    dispatch({ type: "dataSelectSuccess", payload: { dataSelected, user } });
+    dispatch({ type: "ticketSelectSuccess", payload: { ticketSelected, user } });
   } catch (error) {
-    dispatch({ type: "dataSelectFailure", payload: error.message });
+    dispatch({ type: "ticketSelectFailure", payload: error.message });
   }
 };
