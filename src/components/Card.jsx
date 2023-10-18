@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 import { FiMoreHorizontal } from "react-icons/fi";
 import "../styles/Card.css";
 
-const Card = ({ id, title, tags, status }) => {
+const Card = ({ id, title, tags}) => {
   const {  user } = useSelector((state) => state.ticketSelectSlice );
+  //console.log(title)
   return (
     <div className="container">
       <div className="cardH2" style={{ justifyContent: "space-between" }}>
@@ -32,10 +33,10 @@ const Card = ({ id, title, tags, status }) => {
         <div className="tag">
           <FiMoreHorizontal/>
         </div>
-        {tags?.map((element, index) => {
+        {tags?.map((item, index) => {
           return (
             <div key={index} className="tag">
-              <span>●</span> {element}
+              <span>●</span> {item}
             </div>
           );
         })}

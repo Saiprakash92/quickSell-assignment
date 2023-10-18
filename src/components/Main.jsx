@@ -5,26 +5,18 @@ import "../styles/Main.css";
 import Card from "./Card";
 
 const Main = () => {
-  const { dataSelected, user } = useSelector((state) => state.ticketSelectSlice );
+  const { ticketSelected, user } = useSelector((state) => state.ticketSelectSlice );
 
   return (
-    dataSelected && (
+    ticketSelected && (
       <div className="container" style={{ justifyContent: "space-evenly" }}>
-        {dataSelected.map((element, index) => {
+        {ticketSelected.map((element, index) => {
           return (
             <>
-              <div
-                key={index}
-                className="main"
-              >
+              <div key={index} className="main">
                 <div className="cardH1">
-                  <div
-                    className="sideView1"
-                    style={{ display: "flex", alignItems: "center" }}
-                  >
-                    {!user ? (
-                      <BsReception4 />
-                    ) : (
+                  <div className="sideView1" style={{ display: "flex", alignItems: "center" }}>
+                    {!user ? ( <BsReception4 />) : (
                       <>
                         <div className="image">
                           <img

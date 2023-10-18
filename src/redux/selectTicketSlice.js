@@ -2,27 +2,27 @@ import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
   loading: false,
-  dataSelected: [],
+  ticketSelected: [],
   user: false,
   message: null,
 };
 
 export const ticketSelectSlice = createReducer(initialState, (builder) => {
   builder
-    .addCase("dataSelectRequest", (state) => {
+    .addCase("ticketSelectRequest", (state) => {
       state.loading = true;
-      state.dataSelected = [];
+      state.ticketSelected = [];
       state.message = null;
     })
-    .addCase("dataSelectSuccess", (state, action) => {
+    .addCase("ticketSelectSuccess", (state, action) => {
       state.loading = false;
-      state.dataSelected = action.payload.dataSelected;
+      state.ticketSelected = action.payload.ticketSelected;
       state.user = action.payload.user;
       state.message = null;
     })
-    .addCase("dataSelectFailure", (state, action) => {
+    .addCase("ticketSelectFailure", (state, action) => {
       state.loading = false;
-      state.dataSelected = [];
+      state.ticketSelected = [];
       state.user = false;
       state.message = action.payload.message;
     });
