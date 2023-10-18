@@ -1,6 +1,5 @@
 body {
     overflow-x: hidden; 
-    
   }
 .container {
     width: 100%;
@@ -8,10 +7,10 @@ body {
     align-items: flex-start;
     gap: 18px;
     flex-wrap: wrap;
-    padding: 10px;
+    padding: 5px;
     justify-content: center;
-    margin: 0 -15;
-    max-width: 1340px;
+    background-color:whitesmoke ;
+    max-width: 1360px;
     
 }
 
@@ -21,6 +20,7 @@ body {
     gap: 10px;
     flex: 1; 
     max-width: 280px;
+    background-color: #f6f6f6;
     padding: 15px;
     box-sizing: border-box;
 }

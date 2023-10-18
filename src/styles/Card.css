@@ -6,7 +6,7 @@
     border-radius: 10px;
     box-shadow: rgba(42, 42, 196, 0.2) 0px 7px 29px 0px;
     flex-wrap: wrap;
-   
+    margin-top: -3px;
 }
 
 .cardH2 {
@@ -37,7 +37,7 @@ img {
     bottom: 0;
     width: 10px;
     height: 10px;
-    background: silver;
+    
     border-radius: 50%;
 }
 
@@ -45,7 +45,7 @@ img {
     font-weight: 500;
     font-size: medium;
     max-width: 100%; 
-    padding: 0px 15px;
+    padding: 0px 10px;
 }
 
 .tags {
